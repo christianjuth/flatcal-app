@@ -145,11 +145,20 @@ class Equation {
                 valid = false;
         });
 
-        try{
-            math.eval(eq);
-            valid = valid && true;
-        } catch(e){
-            valid = valid && Algebrite.run(eq).indexOf('Stop') == -1;
+        // ban multiple decimals in
+        // one number eg 5.4.3
+        eq.split(/[^(0-9)|\.]+/).forEach(section => {
+            if(section.split('.').length > 2) 
+                valid = false;
+        });
+
+        if(valid){
+            try{
+                math.eval(eq);
+                valid = valid && true;
+            } catch(e){
+                valid = valid && Algebrite.run(eq).indexOf('Stop') == -1;
+            }
         }
 
         return valid;

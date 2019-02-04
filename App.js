@@ -13,10 +13,8 @@ global.Algebrite = require('algebrite');
 let Equation = require('./Equation.js');
 
 
-
-let themeName = 'android';
-let theme = require(`./themes/${themeName}.json`);
-
+let route = './themes/'+'google'+'.json';
+let theme = require(route);
 
 
 class Btn extends React.Component {
